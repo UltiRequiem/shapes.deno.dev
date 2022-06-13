@@ -1,3 +1,7 @@
-import { serve } from "https://deno.land/std@0.142.0/http/server.ts";
+import { serve, Handler } from "https://deno.land/std@0.142.0/http/server.ts";
 
-serve((req: Request) => new Response("Hello World"));
+const handler: Handler = (req, res) => {
+  return Response.json({hey:"aew"})
+};
+
+serve(handler);
