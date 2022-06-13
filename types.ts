@@ -3,17 +3,34 @@
  *
  * Some real-life examples of the circle are coins, wheels, and pizzas.
  */
-export interface Circle {
-  type: "circle";
-  /** The length of the boundary of the circle. */
-  circumference: number;
-  /** The distance from the center of the circle to the boundary of
-   * the circle. */
+export class Circle {
+  /**
+   * The distance from the center of the circle to the boundary of
+   * the circle.
+   */
   radius: number;
-  /** A line segment that goes straight across the circle, through the center.
-   * It is the longest possible line that can be drawn inside a circle and is
-   * twice the length of the radius. */
-  diameter: number;
+
+  constructor(radius: number) {
+    this.radius = radius;
+  }
+
+  /**
+   * @returns The length of the boundary of the circle.
+   */
+  circumference() {
+    return Math.PI * 2 * this.radius;
+  }
+
+  /**
+   * @returns A straight line that runs from one side of a figure and passes through the center.
+   */
+  diameter() {
+    return this.radius * 2;
+  }
+
+  area() {
+    return Math.PI * this.radius * this.radius;
+  }
 }
 
 /**
