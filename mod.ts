@@ -1,4 +1,4 @@
-import { randomNumber } from "https://deno.land/x/random_number@0.1.1/mod.ts";
+import { randomNumber } from "https://deno.land/x/random_number@2.0.0/mod.ts";
 
 /**
  * A circle is a closed 2D shape made up of a curved line with no corners or edges.
@@ -6,32 +6,37 @@ import { randomNumber } from "https://deno.land/x/random_number@0.1.1/mod.ts";
  * Some real-life examples of the circle are coins, wheels, and pizzas.
  */
 export class Circle {
+  circumference: number;
+  diameter: number;
+  area: number;
   /**
    * The distance from the center of the circle to the boundary of
    * the circle.
    */
-  radius: number;
 
-  constructor(radius: number) {
+  constructor(public radius: number) {
     this.radius = radius;
+    this.circumference = Circle.getCircumference(radius);
+    this.diameter = Circle.getDiameter(radius);
+    this.area = Circle.getArea(radius);
   }
 
   /**
    * @returns The length of the boundary of the circle.
    */
-  circumference() {
-    return Math.PI * 2 * this.radius;
+  static getCircumference(radius: number) {
+    return Math.PI * 2 * radius;
   }
 
   /**
    * @returns A straight line that runs from one side of a figure and passes through the center.
    */
-  diameter() {
-    return this.radius * 2;
+  static getDiameter(radius: number) {
+    return radius * 2;
   }
 
-  area() {
-    return Math.PI * this.radius * this.radius;
+  static getArea(radius: number) {
+    return Math.PI * radius * radius;
   }
 
   static random() {
@@ -46,10 +51,12 @@ export class Circle {
  */
 export interface Triangle {
   type: "triangle";
-  sides: { one: number; two: number; three: number };
   vertices: { one: number; two: number; three: number };
   angles: { one: number; two: number; three: number };
+  sides: { one: number; two: number; three: number };
 }
+
+export class Triangle {}
 
 /**
  * A square is a 2D shape with four equal sides and each angle is equal to 90˚.
